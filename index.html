@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raunak Mandil — Portfolio</title>
+  <meta name="description"
+    content="Raunak Mandil — Designer, Developer, Video Editor & Experimentalist. A portfolio of intentional work across disciplines.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Unbounded:wght@300;400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./style.css?v=2">
+</head>
+
+<body>
+  <div id="cursor-outer"></div>
+  <div id="cursor-inner"></div>
+  <div id="cursor-label"></div>
+
+  <div class="shell">
+
+    <!-- MASTHEAD -->
+    <header class="masthead">
+      <div class="masthead-brand">
+        <span class="brand-name">RAUNAK</span>
+        <span class="brand-stroke">MANDIL</span>
+      </div>
+      <nav class="masthead-nav">
+        <span class="nav-item active">Work</span>
+        <span class="nav-item">About</span>
+        <span class="nav-item">Archive</span>
+        <span class="nav-item">Contact</span>
+      </nav>
+      <div class="masthead-meta">
+        <span class="meta-tag">2026</span>
+        <span class="meta-count" id="masterCount">01 / 04</span>
+      </div>
+    </header>
+
+    <!-- SIDEBAR LEFT -->
+    <aside class="sidebar-left">
+      <div class="sl-counter">
+        <div class="sl-counter-label">Current Role</div>
+        <div class="sl-counter-number">
+          <span id="counterNum">01</span>
+          <span class="sl-counter-total">/04</span>
+        </div>
+      </div>
+
+      <div class="sl-dots" id="dotList"></div>
+
+      <div class="gold-rule"></div>
+
+      <div class="sl-details">
+        <div class="sl-detail">
+          <span class="sl-detail-key">Tools</span>
+          <span class="sl-detail-val fade-el" id="dFabric">—</span>
+        </div>
+        <div class="sl-detail">
+          <span class="sl-detail-key">Role</span>
+          <span class="sl-detail-val fade-el" id="dSilhouette">—</span>
+        </div>
+        <div class="sl-detail">
+          <span class="sl-detail-key">Style</span>
+          <span class="sl-detail-val fade-el" id="dMood">—</span>
+        </div>
+        <div class="sl-detail">
+          <span class="sl-detail-key">Influence</span>
+          <span class="sl-detail-val fade-el" id="dOrigin">—</span>
+        </div>
+      </div>
+
+      <div class="sl-arrows">
+        <div class="sl-arrow" id="prevBtn">←</div>
+        <div class="sl-arrow" id="nextBtn">→</div>
+      </div>
+    </aside>
+
+    <!-- IMAGE STAGE -->
+    <main class="image-stage">
+      <div class="slide active" data-index="0">
+        <img src="./images/developer.png" alt="Designer">
+        <span class="slide-ghost">01</span>
+      </div>
+      <div class="slide" data-index="1">
+        <img src="./images/developer.png" alt="Designer">
+        <span class="slide-ghost">02</span>
+      </div>
+      <div class="slide" data-index="2">
+        <img src="./images/developer.png" alt="Designer">
+        <span class="slide-ghost">03</span>
+      </div>
+      <div class="slide" data-index="3">
+        <img src="./images/developer.png" alt="Designer">
+        <span class="slide-ghost">04</span>
+      </div>
+      <div class="slide-vignette"></div>
+      <div class="progress-line" id="progressLine"></div>
+      <div class="click-zone left" id="zoneLeft"></div>
+      <div class="click-zone right" id="zoneRight"></div>
+    </main>
+
+    <!-- FILMSTRIP -->
+    <div class="filmstrip">
+      <div class="film-thumb active" data-idx="0">
+        <img src="./images/developer.png" alt="">
+        <div class="film-thumb-overlay"><span class="film-num">001</span></div>
+      </div>
+      <div class="film-thumb" data-idx="1">
+        <img src="./images/developer.png" alt="">
+        <div class="film-thumb-overlay"><span class="film-num">002</span></div>
+      </div>
+      <div class="film-thumb" data-idx="2">
+        <img src="./images/developer.png" alt="">
+        <div class="film-thumb-overlay"><span class="film-num">003</span></div>
+      </div>
+      <div class="film-thumb" data-idx="3">
+        <img src="./images/developer.png" alt="">
+        <div class="film-thumb-overlay"><span class="film-num">004</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <aside class="panel-right">
+      <div class="pr-title">
+        <div class="pr-eyebrow" id="prEyebrow">Designer / 01</div>
+        <h2 class="pr-headline fade-el" id="prHeadline">FORME<em>Intention</em></h2>
+        <div class="pr-sub fade-el" id="prSub">// Role 001 — Designer</div>
+      </div>
+
+      <div class="pr-section-head">
+        <span class="pr-section-label">✦ &nbsp;Projects</span>
+        <span class="pr-section-sym">◉</span>
+      </div>
+
+      <div class="pr-inspo" id="inspoArea"></div>
+
+      <div class="pr-footer">
+        <span class="pr-footer-label">Raunak Mandil — 2026</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
