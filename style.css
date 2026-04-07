@@ -330,11 +330,12 @@ body::after {
   border-top: var(--rule);
   flex-shrink: 0;
   margin-top: auto;
+  height: 56px;
 }
 
 .sl-arrow {
   flex: 1;
-  height: 44px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -365,8 +366,8 @@ body::after {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.75s cubic-bezier(0.6, 0, 0.2, 1),
-    transform 0.75s cubic-bezier(0.6, 0, 0.2, 1);
+  transition: opacity 1.5s cubic-bezier(0.6, 0, 0.2, 1),
+    transform 1.5s cubic-bezier(0.6, 0, 0.2, 1);
   transform: scale(1.04);
 }
 
@@ -565,8 +566,9 @@ body::after {
 
 .pr-section-label {
   font-family: "Space Mono", monospace;
-  font-size: 7px;
-  letter-spacing: 0.35em;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
 }
 
@@ -578,55 +580,92 @@ body::after {
 
 .pr-inspo {
   flex: 1;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   padding: 0;
-  scrollbar-width: none;
 }
 
 .pr-inspo::-webkit-scrollbar {
   display: none;
 }
 
-.inspo-item {
-  padding: 17px 22px;
+.project-row {
+  display: flex;
+  align-items: center;
+  padding: 0 22px;
   border-bottom: var(--rule);
+  cursor: none;
+  transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), filter 0.3s;
+  gap: 18px;
   position: relative;
-  transition: background 0.2s;
+  flex: 1;
 }
 
-.inspo-item:hover {
-  background: var(--cream-alt);
+.project-row:hover {
+  filter: brightness(0.97);
 }
 
-.inspo-num {
+.project-row.active {
+  transform: translateX(-10px);
+  z-index: 2;
+  border-left: 6px solid var(--ink);
+}
+
+.proj-num {
   font-family: "Space Mono", monospace;
-  font-size: 7px;
-  letter-spacing: 0.2em;
-  color: var(--gold);
-  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  width: 20px;
 }
 
-.inspo-text {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.06rem;
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.52;
-  letter-spacing: 0.01em;
+.proj-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
 }
 
-.inspo-attr {
-  font-family: "Space Mono", monospace;
-  font-size: 6.5px;
-  letter-spacing: 0.28em;
+.proj-name {
+  font-family: "Unbounded", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--steel);
-  margin-top: 8px;
+  letter-spacing: 0.1em;
+}
+
+.proj-desc {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--ink);
+  opacity: 0.7;
+}
+
+.proj-link {
+  font-family: "Space Mono", monospace;
+  font-size: 7.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  transition: opacity 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.proj-link:hover {
+  opacity: 0.5;
+  border-color: transparent;
 }
 
 .pr-footer {
   border-top: var(--rule-thick);
-  padding: 12px 22px;
+  height: 56px;
+  padding: 0 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -698,7 +737,7 @@ body::after {
 
 /* ── FADE TRANSITIONS ── */
 .fade-el {
-  transition: opacity 0.32s ease, transform 0.32s ease;
+  transition: opacity 0.64s ease, transform 0.64s ease;
 }
 
 .fade-el.out {

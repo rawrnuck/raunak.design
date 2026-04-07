@@ -1,123 +1,98 @@
+const PROJECTS = [
+  {
+    id: "01",
+    name: "Queeraani",
+    desc: "A celebration of queer identity through design.",
+    link: "https://canva.link/queeraani",
+    color: "#E8E0D5",
+    image: "./images/project images/queeraani/1.png"
+  },
+  {
+    id: "02",
+    name: "GitRoast",
+    desc: "AI-powered repository feedback and critiques.",
+    link: "https://www.gitroast.in/",
+    color: "#DDE8E0",
+    image: "./images/proto.gif"
+  },
+  {
+    id: "03",
+    name: "Causality",
+    desc: "Visualizing complex systems and relationships.",
+    link: "#",
+    color: "#E0DDE8",
+    image: "./images/project images/project 1/main 1.png"
+  },
+  {
+    id: "04",
+    name: "LES",
+    desc: "The architecture of minimalist brand identity.",
+    link: "#",
+    color: "#F2E8D5",
+    image: "./images/project images/project 1/main 1.png"
+  }
+];
+
+const ROLE_IMAGES = ["./images/main 1.png", "./images/main 2.png", "./images/main 3.png", "./images/main 4.png"];
+
 const DATA = [
   {
-    eyebrow: "FORME / Intention",
-    name: ["DESIGNER", ""],
-    sub: "// FORME — Intention",
-    dotLabel: "FORME",
+    eyebrow: "DESIGN / Systems",
+    name: ["DESIGNER", "/ Systems"],
+    sub: "// Product — Design Systems",
+    dotLabel: "SYSTEMS",
     details: {
-      Tools: "Figma, After Effects",
-      Role: "UI / Product Designer",
-      Style: "Minimal",
-      Influence: "Bauhaus"
-    },
-    inspo: [
-      {
-        text:
-          "The absence of ornament is itself an ornament — a reduction to pure form, where only gesture remains.",
-        attr: "— Atelier Notes"
-      },
-      {
-        text:
-          "She does not dress to be seen. She dresses to disappear into the architecture of the room.",
-        attr: "— Collection Brief"
-      },
-      {
-        text:
-          "Vide. Empty. And in that emptiness, everything that truly matters.",
-        attr: "— Creative Director"
-      }
-    ]
+      Tools: "Figma, React, CSS",
+      Role: "Systems Designer",
+      Style: "Atomic",
+      Influence: "Vignelli"
+    }
   },
   {
-    eyebrow: "LOGIC / Precision",
-    name: ["DESIGNER", ""],
-    sub: "// LOGIC — Precision",
-    dotLabel: "LOGIC",
+    eyebrow: "DESIGN / Identity",
+    name: ["DESIGNER", "/ Identity"],
+    sub: "// Visual — Identity & Brand",
+    dotLabel: "IDENTITY",
     details: {
-      Tools: "React, Node.js, Three.js",
-      Role: "Frontend Developer",
-      Style: "Structured",
-      Influence: "Brutalism"
-    },
-    inspo: [
-      {
-        text:
-          "A seam is a scar. A dart is a decision. Every line on the body tells us where the body ends and the idea begins.",
-        attr: "— Atelier Notes"
-      },
-      {
-        text:
-          "The jacket is not clothing. It is a theory of the shoulder, a hypothesis about power.",
-        attr: "— Collection Brief"
-      },
-      {
-        text: "We cut and cut until what remains feels inevitable.",
-        attr: "— Pattern Maker"
-      }
-    ]
+      Tools: "Illustrator, After Effects",
+      Role: "Brand Designer",
+      Style: "Bold",
+      Influence: "Swiss Design"
+    }
   },
   {
-    eyebrow: "TEMPO / Motion",
-    name: ["DESIGNER", ""],
-    sub: "// TEMPO — Motion",
-    dotLabel: "TEMPO",
+    eyebrow: "DESIGN / Motion",
+    name: ["DESIGNER", "/ Motion"],
+    sub: "// Digital — Motion Design",
+    dotLabel: "MOTION",
     details: {
-      Tools: "Premiere, After Effects",
+      Tools: "Lottie, After Effects",
       Role: "Motion Designer",
-      Style: "Cinematic",
-      Influence: "Glitch"
-    },
-    inspo: [
-      {
-        text:
-          "Dusk is the only hour when colour is honest — neither the harshness of noon nor the lies of electric light.",
-        attr: "— Colour Direction"
-      },
-      {
-        text:
-          "She moves and the fabric remembers. It holds the shape of her motion like amber.",
-        attr: "— Collection Brief"
-      },
-      {
-        text: "Ombre: to shade. All fashion is the art of selective shadow.",
-        attr: "— Creative Director"
-      }
-    ]
+      Style: "Fluid",
+      Influence: "Abstract"
+    }
   },
   {
-    eyebrow: "VOID / Instinct",
-    name: ["DESIGNER", ""],
-    sub: "// VOID — Instinct",
-    dotLabel: "VOID",
+    eyebrow: "DESIGN / Editorial",
+    name: ["DESIGNER", "/ Editorial"],
+    sub: "// Print — Editorial Design",
+    dotLabel: "EDITORIAL",
     details: {
-      Tools: "Three.js, p5.js, TouchDesigner",
-      Role: "Creative Technologist",
-      Style: "Chaotic",
-      Influence: "Wabi-sabi"
-    },
-    inspo: [
-      {
-        text:
-          "Ma — the concept of negative space — is not absence, but the pause that gives meaning to all that surrounds it.",
-        attr: "— Design Philosophy"
-      },
-      {
-        text:
-          "The eye follows what is revealed. But the mind follows what is withheld.",
-        attr: "— Atelier Notes"
-      },
-      {
-        text:
-          "To dress is to choose what to leave uncovered. The honest garment knows its own edges.",
-        attr: "— Creative Director"
-      }
-    ]
+      Tools: "InDesign, Photoshop",
+      Role: "Graphic Designer",
+      Style: "Classical",
+      Influence: "Didot"
+    }
   }
 ];
 
 let current = 0,
-  animating = false;
-const DURATION = 5500;
+  animating = false,
+  projectMode = false,
+  activeProjIdx = -1,
+  projSlideIdx = 0;
+
+const DURATION = 2000;
 let autoTimer,
   progTimer,
   progVal = 0;
@@ -148,7 +123,6 @@ DATA.forEach((d, i) => {
   row.innerHTML = `<div class="sl-dot-track"></div><span class="sl-dot-label">${d.dotLabel}</span>`;
   row.addEventListener("click", () => {
     goTo(i);
-    resetAuto();
   });
   dotList.appendChild(row);
 });
@@ -171,7 +145,7 @@ function goTo(idx) {
     renderContent();
     domFades.forEach((el) => el.classList.remove("out"));
     animating = false;
-  }, 270);
+  }, 750);
 
   resetProgress();
 }
@@ -187,17 +161,85 @@ function renderContent() {
   Object.entries(detMap).forEach(([key, id]) => {
     document.getElementById(id).textContent = d.details[key] || "—";
   });
-  inspoArea.innerHTML = d.inspo
+}
+
+function renderProjects() {
+  // Render Projects list statically
+  inspoArea.innerHTML = PROJECTS
     .map(
-      (q, i) => `
-      <div class="inspo-item">
-        <div class="inspo-num">0${i + 1}</div>
-        <div class="inspo-text">${q.text}</div>
-        <div class="inspo-attr">${q.attr}</div>
+      (p, i) => `
+      <div class="project-row ${activeProjIdx === i ? 'active' : ''}" style="background-color: ${p.color}" data-pidx="${i}">
+        <div class="proj-num">${p.id}</div>
+        <div class="proj-info">
+          <span class="proj-name">${p.name}</span>
+          <span class="proj-desc">— ${p.desc}</span>
+        </div>
+        <a href="${p.link}" class="proj-link" target="_blank" onclick="event.stopPropagation()">link</a>
       </div>
     `
     )
     .join("");
+
+  // Re-attach listeners
+  inspoArea.querySelectorAll(".project-row").forEach((row) => {
+    row.addEventListener("click", () => {
+      toggleProject(parseInt(row.dataset.pidx));
+    });
+  });
+}
+
+function updateProjectRowState() {
+  inspoArea.querySelectorAll(".project-row").forEach((row, i) => {
+    if (i === activeProjIdx) row.classList.add("active");
+    else row.classList.remove("active");
+  });
+}
+
+function toggleProject(idx) {
+  if (idx === -1 || activeProjIdx === idx) {
+    projectMode = false;
+    activeProjIdx = -1;
+    projSlideIdx = 0;
+    startAuto(); // Resume timer
+  } else {
+    projectMode = true;
+    activeProjIdx = idx;
+    projSlideIdx = 0;
+    resetAuto(); // This clears existing and doesn't start if we change startAuto below
+    // Actually, we want to STOP it.
+    clearInterval(autoTimer);
+    resetProgress();
+  }
+  updateImageStage();
+  updateProjectRowState();
+}
+
+function updateImageStage() {
+  const activeSlide = domSlides[current];
+  const imgEl = activeSlide.querySelector("img");
+
+  if (projectMode && activeProjIdx !== -1) {
+    const p = PROJECTS[activeProjIdx];
+    imgEl.src = p.image;
+    activeSlide.querySelector(".slide-ghost").textContent = `P${activeProjIdx + 1}`;
+  } else {
+    imgEl.src = ROLE_IMAGES[current];
+    activeSlide.querySelector(".slide-ghost").textContent = String(current + 1).padStart(2, "0");
+  }
+
+  // Filmstrip always shows Roles now as per simplified navigation
+  domThumbs.forEach((thumb, i) => {
+    const thumbImg = thumb.querySelector("img");
+    const thumbNum = thumb.querySelector(".film-num");
+    if (thumbImg) thumbImg.src = ROLE_IMAGES[i];
+    if (thumbNum) thumbNum.innerText = String(i + 1).padStart(3, "0");
+
+    // Highlight thumb based on mode
+    // If project mode is on, we don't highlight any thumb? Or keep the current role thumb?
+    // Let's keep the current role thumb highlighted since roles are always behind projects.
+    if (i === current) thumb.classList.add("active");
+    else thumb.classList.remove("active");
+  });
 }
 
 function resetProgress() {
@@ -205,14 +247,17 @@ function resetProgress() {
   progVal = 0;
   progressLine.style.transition = "none";
   progressLine.style.width = "0%";
-  requestAnimationFrame(() => {
-    progressLine.style.transition = "width 0.1s linear";
-    const step = 100 / (DURATION / 100);
-    progTimer = setInterval(() => {
-      progVal = Math.min(progVal + step, 100);
-      progressLine.style.width = progVal + "%";
-    }, 100);
-  });
+
+  if (!projectMode) {
+    requestAnimationFrame(() => {
+      progressLine.style.transition = "width 0.1s linear";
+      const step = 100 / (DURATION / 100);
+      progTimer = setInterval(() => {
+        progVal = Math.min(progVal + step, 100);
+        progressLine.style.width = progVal + "%";
+      }, 100);
+    });
+  }
 }
 
 function resetAuto() {
@@ -220,27 +265,42 @@ function resetAuto() {
   startAuto();
 }
 function startAuto() {
+  if (projectMode) return;
+  clearInterval(autoTimer);
   autoTimer = setInterval(() => goTo(current + 1), DURATION);
 }
 
+function nextSlide() {
+  if (projectMode) {
+    toggleProject(-1); // Exit if user clicks next while viewing a project
+  } else {
+    goTo(current + 1);
+  }
+}
+
+function prevSlide() {
+  if (projectMode) {
+    toggleProject(-1);
+  } else {
+    goTo(current - 1);
+  }
+}
+
 document.getElementById("nextBtn").addEventListener("click", () => {
-  goTo(current + 1);
-  resetAuto();
+  nextSlide();
 });
 document.getElementById("prevBtn").addEventListener("click", () => {
-  goTo(current - 1);
-  resetAuto();
+  prevSlide();
 });
 document.getElementById("zoneRight").addEventListener("click", () => {
-  goTo(current + 1);
-  resetAuto();
+  nextSlide();
 });
 document.getElementById("zoneLeft").addEventListener("click", () => {
-  goTo(current - 1);
-  resetAuto();
+  prevSlide();
 });
 domThumbs.forEach((t) =>
   t.addEventListener("click", () => {
+    if (projectMode) toggleProject(-1);
     goTo(parseInt(t.dataset.idx));
     resetAuto();
   })
@@ -249,11 +309,9 @@ domThumbs.forEach((t) =>
 document.addEventListener("keydown", (e) => {
   if (["ArrowRight", "ArrowDown"].includes(e.key)) {
     goTo(current + 1);
-    resetAuto();
   }
   if (["ArrowLeft", "ArrowUp"].includes(e.key)) {
     goTo(current - 1);
-    resetAuto();
   }
 });
 
@@ -265,7 +323,6 @@ document.addEventListener("touchend", (e) => {
   const dx = tx - e.changedTouches[0].clientX;
   if (Math.abs(dx) > 40) {
     goTo(dx > 0 ? current + 1 : current - 1);
-    resetAuto();
   }
 });
 
@@ -286,8 +343,8 @@ document.addEventListener("mousemove", (e) => {
 });
 
 (function lerpCursor() {
-  ox += (mx - ox) * 0.13;
-  oy += (my - oy) * 0.13;
+  ox += (mx - ox) * 0.08;
+  oy += (my - oy) * 0.08;
   cOuter.style.left = ox + "px";
   cOuter.style.top = oy + "px";
   cLabel.style.left = ox + "px";
@@ -323,5 +380,6 @@ document.getElementById("zoneLeft").addEventListener("mouseleave", () => {
 
 /* INIT */
 renderContent();
+renderProjects();
 resetProgress();
 startAuto();
