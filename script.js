@@ -41,48 +41,24 @@ const DATA = [
     name: ["DESIGNER", "/ Systems"],
     sub: "// Product — Design Systems",
     dotLabel: "SYSTEMS",
-    details: {
-      Tools: "Figma, React, CSS",
-      Role: "Systems Designer",
-      Style: "Atomic",
-      Influence: "Vignelli"
-    }
   },
   {
     eyebrow: "DESIGN / Identity",
     name: ["DESIGNER", "/ Identity"],
     sub: "// Visual — Identity & Brand",
     dotLabel: "IDENTITY",
-    details: {
-      Tools: "Illustrator, After Effects",
-      Role: "Brand Designer",
-      Style: "Bold",
-      Influence: "Swiss Design"
-    }
   },
   {
     eyebrow: "DESIGN / Motion",
     name: ["DESIGNER", "/ Motion"],
     sub: "// Digital — Motion Design",
     dotLabel: "MOTION",
-    details: {
-      Tools: "Lottie, After Effects",
-      Role: "Motion Designer",
-      Style: "Fluid",
-      Influence: "Abstract"
-    }
   },
   {
     eyebrow: "DESIGN / Editorial",
     name: ["DESIGNER", "/ Editorial"],
     sub: "// Print — Editorial Design",
     dotLabel: "EDITORIAL",
-    details: {
-      Tools: "InDesign, Photoshop",
-      Role: "Graphic Designer",
-      Style: "Classical",
-      Influence: "Didot"
-    }
   }
 ];
 
@@ -101,19 +77,11 @@ const domSlides = document.querySelectorAll(".slide");
 const domThumbs = document.querySelectorAll(".film-thumb");
 const domFades = document.querySelectorAll(".fade-el");
 const progressLine = document.getElementById("progressLine");
-const counterNum = document.getElementById("counterNum");
-const masterCount = document.getElementById("masterCount");
 const prEyebrow = document.getElementById("prEyebrow");
 const prHeadline = document.getElementById("prHeadline");
 const prSub = document.getElementById("prSub");
 const inspoArea = document.getElementById("inspoArea");
 const dotList = document.getElementById("dotList");
-const detMap = {
-  Tools: "dFabric",
-  Role: "dSilhouette",
-  Style: "dMood",
-  Influence: "dOrigin"
-};
 
 // Build dots
 DATA.forEach((d, i) => {
@@ -152,15 +120,12 @@ function goTo(idx) {
 
 function renderContent() {
   const d = DATA[current];
-  const n = String(current + 1).padStart(2, "0");
-  counterNum.textContent = n;
-  masterCount.textContent = `${n} / 04`;
   prEyebrow.textContent = d.eyebrow;
+  const n = String(current + 1).padStart(2, "0");
+  const masterCount = document.getElementById("masterCount");
+  if (masterCount) masterCount.textContent = `${n} / 04`;
   prHeadline.innerHTML = `${d.name[0]}<em>${d.name[1]}</em>`;
   prSub.textContent = d.sub;
-  Object.entries(detMap).forEach(([key, id]) => {
-    document.getElementById(id).textContent = d.details[key] || "—";
-  });
 }
 
 function renderProjects() {
@@ -377,6 +342,38 @@ document.getElementById("zoneLeft").addEventListener("mouseenter", () => {
 document.getElementById("zoneLeft").addEventListener("mouseleave", () => {
   document.body.classList.remove("cursor-hover", "show-label");
 });
+
+/* STATUS CLOCK */
+function updateStatusClock() {
+  const options = {
+    timeZone: 'Asia/Kolkata',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  };
+  const dateOptions = {
+    timeZone: 'Asia/Kolkata',
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  };
+  
+  const now = new Date();
+  const timeStr = new Intl.DateTimeFormat('en-GB', options).format(now);
+  const dateStr = new Intl.DateTimeFormat('en-GB', dateOptions).format(now);
+  
+  // Format: "dd Month yyyy" -> "07 april 2026"
+  const dateParts = dateStr.split(' ');
+  const formattedDate = `${dateParts[0]} ${dateParts[1]} ${dateParts[2]}`.toLowerCase();
+  
+  const slTime = document.getElementById('slTime');
+  const footerDate = document.getElementById('footerDate');
+  if (slTime) slTime.textContent = timeStr;
+  if (footerDate) footerDate.textContent = formattedDate;
+}
+setInterval(updateStatusClock, 1000);
+updateStatusClock();
 
 /* INIT */
 renderContent();

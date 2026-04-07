@@ -215,31 +215,28 @@ body::after {
 
 .sl-counter-label {
   font-family: "Space Mono", monospace;
-  font-size: 7px;
+  font-size: 8px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--steel);
-  margin-bottom: 6px;
+  margin-bottom: 0px;
 }
 
-.sl-counter-number {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 3.4rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.02em;
+.sl-counter-status {
   display: flex;
-  align-items: flex-end;
-  gap: 4px;
+  flex-direction: column;
 }
 
-.sl-counter-total {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1rem;
-  font-weight: 300;
-  color: var(--steel);
-  margin-bottom: 3px;
+#slTime {
+  font-family: "Unbounded", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-left: -2px;
 }
+
 
 .sl-dots {
   padding: 16px 20px;
@@ -296,10 +293,10 @@ body::after {
 }
 
 .sl-details {
-  padding: 18px 20px;
+  padding: 32px 20px;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 36px;
   flex: 1;
   overflow: hidden;
 }
@@ -311,9 +308,10 @@ body::after {
 }
 
 .sl-detail-key {
-  font-family: "Space Mono", monospace;
-  font-size: 7px;
-  letter-spacing: 0.3em;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--steel-light);
 }
@@ -323,6 +321,57 @@ body::after {
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.sl-company-link {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.sl-company-link:hover {
+  border-bottom-color: var(--gold);
+}
+
+.sl-socials {
+  margin-top: 10px;
+}
+
+.sl-social-label {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--steel-light);
+  margin-bottom: 12px;
+}
+
+.sl-social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sl-social-link {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s, color 0.25s;
+  padding-bottom: 2px;
+  width: fit-content;
+}
+
+.sl-social-link:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
 }
 
 .sl-arrows {
